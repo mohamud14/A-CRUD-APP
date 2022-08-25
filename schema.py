@@ -39,3 +39,7 @@ class Players(db.Model):
 #
     def __repr__(self):
         return "<Player ID: {0} |Player Name: {1} | Team: {2}".format(self.player_id, self.player_name, self.plays_for)
+
+class TeamForm(FlaskForm):
+    team_id= IntegerField('Team ID:')
+    team_name= StringField('Team Name:', validators=[DataRequired()])
