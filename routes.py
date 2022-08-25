@@ -86,3 +86,28 @@ def add_player(id):
 
     return render_template('add_player.html', form=form,player_id=id, pageTitle='Add A New player',
                             legend="Add A New player")
+
+@app.route('/delete_player/<int:id>', methods=['GET', 'POST'])
+def delete_player(id):
+    if request.method == 'POST': ####if its a POST request then delete the friend from the database
+        player = Players.query.get_or_404(id)
+        db.session.delete(player)
+        db.session.commit()
+        return redirect('/')
+    else: ######if its a GET request then send them to the home page
+        return redirect("/")
+
+@app.route('/updateplayer/<int:id>', methods=['GET','POST'])
+def update_player(id):
+    player = Players.query.get_or_404(id)
+    form = PlayerForm()
+
+    if form.validate_on_submit():
+        player.player_id = form.player_id.data
+        player.player_name = form.player_name.data
+        db.session.commit()
+        return redirect('/')
+
+    form.player_id.data = player.player_id
+    form.player_name.data = player.player_name
+    return render_template('update_player.html', form=form, pageTitle='Update player', legend="Update A player")
