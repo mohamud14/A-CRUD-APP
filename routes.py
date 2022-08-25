@@ -30,3 +30,13 @@ def add_team():
 
     return render_template('add_team.html', form=form, pageTitle='Add A New team',
                             legend="Add A New team")
+
+@app.route('/delete_team/<int:id>', methods=['GET', 'POST'])
+def delete_team(id):
+    if request.method == 'POST': ####if its a POST request then delete the friend from the database
+        team = Teams.query.get_or_404(id)
+        db.session.delete(team)
+        db.session.commit()
+        return redirect("/")
+    else: ######if its a GET request then send them to the home page
+        return redirect("/")

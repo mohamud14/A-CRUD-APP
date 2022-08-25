@@ -31,7 +31,7 @@
 
 
                 <td style="border: 1px solid white">
-                    <form action="#" method="POST">
+                    <form action="{{ url_for('delete_team', id=row.team_id) }}" method="POST">
                         <input type="submit" value="Delete Team"  />
                     </form>
                 </td>
