@@ -1,0 +1,21 @@
+<body>
+{% extends 'base.html' %}
+{% block body %}
+<div>
+    <p><a href="{{ url_for('index')}}"> home</a></p>
+
+
+  <h3 >{{ legend }}</h3>
+
+  <form style="border: 1px solid white" method="POST" action="">
+
+    {{ form.csrf_token }}
+    {{ form.team_name.label }} {{ form.team_name(size=20) }}
+
+    <input type="submit" value="Save">
+
+  </form>
+
+</div>
+{% endblock %}
+</body>

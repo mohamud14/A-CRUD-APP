@@ -8,6 +8,17 @@ def index():
     return render_template('index.html',
                            all_teams=all_teams, pageTitle='Home')
 
+@app.route('/search', methods=['GET', 'POST'])
+def search():
+    if request.method == 'POST':
+        form = request.form
+        search_value = form['search_string']
+        search = "%{0}%".format(search_value)
+        results = Teams.query.filter(Teams.team_name.like(search)).all()
+        return render_template('index.html', all_teams=results, pageTitle='Mohamed', legend="Search Results")
+    else:
+        return redirect('/')
+
 @app.route('/add_team', methods=['GET', 'POST'])
 def add_team():
     form = TeamForm()

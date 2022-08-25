@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<form method="POST">
+    <input type="text" autofocus="autofocus" name="search_string">
+    <input type="submit" formaction="/search" value="Search">
+</form>
+
+<p><a href="{{ url_for('add_team')}}"> Add a new team</a></p>
+<p><a href="{{ url_for('index')}}"> home</a></p>
+
+   <h3>{{ legend }}</h3>
+{% if all_teams %}
+    <table >
+        <thead>
+            <tr>
+                <th style="border: 1px solid white">Team Name</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for row in all_teams %}
+            <tr>
+                <td style="border: 1px solid white"> {{ row.team_name }}</td>
+                <td style="border: 1px solid white">
+                    <form action="#" method="POST">
+                        <input type="submit" value="Players for this team"  />
+                    </form>
+                </td>
+
+
+                <td style="border: 1px solid white">
+                    <form action="#" method="POST">
+                        <input type="submit" value="Delete Team"  />
+                    </form>
+                </td>
+                <td style="border: 1px solid white">
+                    <form action="#" method="POST">
+                        <input type="submit" value="Update Team"  />
+                    </form>
+                </td>
+
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+{% endblock %}
