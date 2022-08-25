@@ -43,3 +43,7 @@ class Players(db.Model):
 class TeamForm(FlaskForm):
     team_id= IntegerField('Team ID:')
     team_name= StringField('Team Name:', validators=[DataRequired()])
+
+class PlayerForm(FlaskForm):
+    player_id = IntegerField('Player ID:')
+    player_name = StringField('Player Name:', validators=[DataRequired()])

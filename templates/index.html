@@ -23,9 +23,12 @@
             {% for row in all_teams %}
             <tr>
                 <td style="border: 1px solid white"> {{ row.team_name }}</td>
+                <td style="border: 1px solid white"> <p><a href="{{ url_for('showteam', id=row.team_id) }}"> bottom left </a></p></td>
+
+                </td>
                 <td style="border: 1px solid white">
-                    <form action="#" method="POST">
-                        <input type="submit" value="Players for this team"  />
+                    <form action="{{ url_for('showteam', id=row.team_id) }}" method="POST">
+                        <input type="submit" value="Details of Team"  />
                     </form>
                 </td>
 
@@ -36,7 +39,7 @@
                     </form>
                 </td>
                 <td style="border: 1px solid white">
-                    <form action="#" method="POST">
+                    <form action="{{ url_for('update_team', id=row.team_id) }}" method="POST">
                         <input type="submit" value="Update Team"  />
                     </form>
                 </td>
