@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block body %}
+<div>
+
+  <h3>{{ legend }}</h3>
+
+  <form method="POST" action="">
+
+    {{ form.csrf_token }}
+    {{ form.player_id.label }} {{ form.player_id(size=5, readonly=true)}}
+    {{ form.player_name.label }} {{ form.player_name(size=20) }}
+
+    <input type="submit" value="Save">
+
+  </form>
+
+</div>
+{% endblock %}
