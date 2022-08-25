@@ -40,3 +40,18 @@ def delete_team(id):
         return redirect("/")
     else: ######if its a GET request then send them to the home page
         return redirect("/")
+
+@app.route('/updateteam/<int:id>', methods=['GET','POST'])
+def update_team(id):
+    team = Teams.query.get_or_404(id)
+    form = TeamForm()
+
+    if form.validate_on_submit():
+        team.team_id = form.team_id.data
+        team.team_name = form.team_name.data
+        db.session.commit()
+        return redirect('/')
+
+    form.team_id.data = team.team_id
+    form.team_name.data = team.team_name
+    return render_template('update_team.html', form=form, pageTitle='Update team', legend="Update A team")
