@@ -19,7 +19,7 @@ class TestBase(LiveServerTestCase):
         return app
 
     def setUp(self):
-        from schema import *
+        from schema import Teams
         db.create_all()  # create schema before we try to get the page
 
         test_team = Teams(name="Test")
