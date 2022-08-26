@@ -1,14 +1,23 @@
 {% extends 'base.html' %}
 
 {% block body %}
+{% for message in get_flashed_messages() %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>Changes Made:</strong> {{ message }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
 
+{% endfor %}
+<br>
 <form method="POST">
     <input type="text" autofocus="autofocus" name="search_string">
     <input type="submit" formaction="/search" value="Search">
 </form>
-
-<p><a href="{{ url_for('add_team')}}"> Add a new team</a></p>
-<p><a href="{{ url_for('index')}}"> home</a></p>
+<br>
+<!--<p style="color:black"><a href="{{ url_for('add_team')}}"> Add a new team</a></p>-->
+<form action="{{ url_for('add_team')}}" method="POST">
+                        <input type="submit" value="Add new team"  />
+                    </form>
 
    <h3>{{ legend }}</h3>
 {% if all_teams %}
@@ -23,7 +32,7 @@
             {% for row in all_teams %}
             <tr>
                 <td style="border: 1px solid white"> {{ row.team_name }}</td>
-                <td style="border: 1px solid white"> <p><a href="{{ url_for('showteam', id=row.team_id) }}"> bottom left </a></p></td>
+<!--                <td style="border: 1px solid white"> <p><a href="{{ url_for('showteam', id=row.team_id) }}"> bottom left </a></p></td>-->
 
                 </td>
                 <td style="border: 1px solid white">

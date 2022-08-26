@@ -4,11 +4,14 @@
 {% block body %}
 <div>
 
-    <p><a href="{{ url_for('index')}}"> home</a></p>
+<!--    <p><a href="{{ url_for('index')}}"> home</a></p>-->
 
 
-    <h3 >{{ legend }} --- show players on team</h3>
-    <a href="{{url_for('add_player',id =  team_id)}}"> Add a new player!</a>
+    <h3 >{{ legend }} --- ;D </h3>
+    <form action="{{url_for('add_player',id =  team_id)}}" method="POST">
+                        <input type="submit" value="Add new Player"  />
+                    </form>
+<!--    <a href="{{url_for('add_player',id =  team_id)}}"> Add a new player!</a>-->
 
 
     {% if listofplayers %}
