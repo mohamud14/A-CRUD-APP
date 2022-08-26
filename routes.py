@@ -17,7 +17,7 @@ def search():
         search_value = form['search_string']
         search = "%{0}%".format(search_value)
         results = Teams.query.filter(Teams.team_name.like(search)).all()
-        return render_template('index.html', all_teams=results, pageTitle='Mohamed', legend="Search Results")
+        return render_template('index.html', all_teams=results, pageTitle='Search', legend="Search Results")
     else:
         return redirect('/')
 
@@ -31,7 +31,7 @@ def add_team():
         return redirect('/')
 
     return render_template('add_team.html', form=form, pageTitle='Add A New team',
-                            legend="Add A New team")
+                            legend="Add A New Team")
 
 @app.route('/delete_team/<int:id>', methods=['GET', 'POST'])
 def delete_team(id):
@@ -56,8 +56,7 @@ def showteam(id):
             db.session.commit()
             return redirect('/details', id=id)
 
-    #<!--    <a href="{{url_for('add_player',id=player.player_id)}}"> Add a new player!</a>-->
-    return render_template('details.html', team_id=id, listofplayers=player_of_specific_team, form=form, pageTitle='Details', legend=" players on team")
+    return render_template('details.html', team_id=id, listofplayers=player_of_specific_team, form=form, pageTitle='Details of Team', legend="Players who play for this Team")
 
 @app.route('/updateteam/<int:id>', methods=['GET','POST'])
 def update_team(id):
