@@ -1,7 +1,7 @@
 from main import *
 
 #OOP
-class Teams(db.Model):
+class Teams(db.Model):       # teams table format, can add more but will need to add to forms
     team_id = db.Column(db.Integer, unique=True, nullable=False, primary_key=True, autoincrement=True)
     team_name = db.Column(db.String(100), nullable=False, unique=True)
     # team_manager = db.Column(db.String(100), nullable=False)
@@ -24,7 +24,7 @@ class Teams(db.Model):
     #                                  self.team_manager, self.stadium)
 #
 #
-class Players(db.Model):
+class Players(db.Model):     # players table
     player_id = db.Column(db.Integer, unique=True, nullable=False, primary_key=True, autoincrement=True)
     player_name = db.Column(db.String(100), nullable=False)
     plays_for = db.Column(db.Integer,db.ForeignKey('teams.team_id', ondelete="CASCADE"), nullable=False)

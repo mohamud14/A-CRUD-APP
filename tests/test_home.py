@@ -22,10 +22,10 @@ class TestBase(LiveServerTestCase):
         from schema import Teams, Players
         db.create_all()  # create schema before we try to get the page
 
-        test_team = Teams(team_name="Test",team_id=None)
+        test_team = Teams(team_name="Test",team_id=1)
         db.session.add(test_team)
-        test_players = Players(player_name="Test Player",player_id=None, plays_for=None)
-        db.session.add(test_players)
+        test_player = Players(player_name="Test Player",player_id=10, plays_for=1)
+        db.session.add(test_player)
         db.session.commit()
 
     def tearDown(self):
@@ -33,7 +33,7 @@ class TestBase(LiveServerTestCase):
         db.drop_all()
 
 
-class TestAdd(TestBase):
+class TestIndex(TestBase):
 
     def test_index_route(self):
         response = app.test_client().get('/')
