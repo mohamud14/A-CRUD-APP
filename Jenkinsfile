@@ -36,7 +36,7 @@ pipeline{
 
             stage ("Deploy to swarm") {
                 steps {
-                    sshPublisher(publishers: [sshPublisherDesc(configName: 'a-crud-app', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'cd /home/jenkins/swarm && docker stack deploy -c home/jenkins/swarm/docker-compose.yaml flask-app', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '/home/jenkins/swarm', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '**/docker-compose.yaml, **/nginx.conf')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: true)])
+                    sshPublisher(publishers: [sshPublisherDesc(configName: 'mmohamud14', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'cd /home/jenkins/swarm && docker stack deploy -c home/jenkins/swarm/docker-compose.yaml flask-app', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '/home/jenkins/swarm', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '**/docker-compose.yaml, **/nginx.conf')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: true)])
                 }
             }
 
