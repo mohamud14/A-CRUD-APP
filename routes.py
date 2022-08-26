@@ -18,7 +18,7 @@ def search():                                     # POST used to send html data 
         search_value = form['search_string']      ## searched by the user
         search = "%{0}%".format(search_value)
         results = Teams.query.filter(Teams.team_name.like(search)).all()
-        # flash("These are your search results! Click Home to go back......")
+        flash("These are your search results! Click Home to go back......")
 
         return render_template('index.html', all_teams=results, pageTitle='Search', legend="Search Results")
     else:
@@ -31,7 +31,7 @@ def add_team():
         team = Teams(team_id=form.team_id.data, team_name=form.team_name.data)
         db.session.add(team)
         db.session.commit()
-        # flash("Added Team!")
+        flash("Added Team!")
         return redirect('/')
 
     return render_template('add_team.html', form=form, pageTitle='Add A New team',
@@ -43,7 +43,7 @@ def delete_team(id):
         team = Teams.query.get_or_404(id)
         db.session.delete(team)
         db.session.commit()
-        # flash("Team Deleted !!!")
+        flash("Team Deleted !!!")
 
         return redirect("/")
     else: ######if its a GET request then send them to the home page
@@ -73,7 +73,7 @@ def update_team(id):
         team.team_id = form.team_id.data
         team.team_name = form.team_name.data
         db.session.commit()
-        # flash("Team Updated Successfully!")
+        flash("Team Updated Successfully!")
         return redirect('/')
 
     form.team_id.data = team.team_id
@@ -88,7 +88,7 @@ def add_player(id):
         player = Players(plays_for=id,player_name=form.player_name.data,player_id=None)
         db.session.add(player)
         db.session.commit()
-        # flash("Player Added Successfully! Return to Details to view....")
+        flash("Player Added Successfully! Return to Details to view....")
         return redirect('/')
 
     return render_template('add_player.html', form=form,player_id=id, pageTitle='Add A New player',
@@ -100,7 +100,7 @@ def delete_player(id):
         player = Players.query.get_or_404(id)
         db.session.delete(player)
         db.session.commit()
-        # flash("Player Deleted !!!")
+        flash("Player Deleted !!!")
 
         return redirect('/')
     else: ######if its a GET request then send them to the home page
@@ -115,7 +115,7 @@ def update_player(id):
         player.player_id = form.player_id.data
         player.player_name = form.player_name.data
         db.session.commit()
-        # flash("Player Updated Successfully!")
+        flash("Player Updated Successfully!")
 
         return redirect('/')
 
