@@ -28,12 +28,57 @@
 #  volumes:
 #    mysql-data:
 
-version: '3.7'
-services:
-  flask:
-    image: flaskenv:latest
-    environment:
+#version: '3.7'
+#services:
+#  flask:
+#    image: flaskenv:latest
+#    environment:
+#
+#  ports:
+#  - published: 5000
+#  - target: 5000
 
-  ports:
-  - published: 5000
-  - target: 5000
+version: '3.7'
+
+services:
+  web:
+    image: mmohamud14/a-crud-app
+    environment:
+      - db_connection=mysql+pymysql://flask:flask@db:3306/a-crud-app
+      - PYTHONUNBUFFERED=1
+    ports:
+      - 5000
+    deploy:
+      replicas: 3
+    depends_on:
+      - db
+    restart: always
+
+  db:
+    image: mysql:8
+    ports:
+      - published: 3306
+        target: 3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=flask
+      - MYSQL_USER=flask
+      - MYSQL_PASSWORD=flask
+      - MYSQL_DATABASE=demoflask
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  nginx:
+      image: nginx:latest
+      ports:
+      - target: 80
+        published: 80
+        protocol: tcp
+      volumes:
+      - type: bind
+        source: ./nginx.conf
+        target: /etc/nginx/nginx.conf
+      depends_on:
+        - web
+
+volumes:
+  mysql-data:
