@@ -1,8 +1,39 @@
-version: "3.9"
+#version: "3.9"
+#services:
+#  web:
+#    build: .
+#    ports:
+#      - "8000:5000"
+#  redis:
+#    image: "redis:alpine"
+#
+#version: '3.7'
+#services:
+#  web:
+#    image: flaskapp:demo
+#    ports:
+#    -published: 5000
+#    target: 5000
+#  depends_on:
+#    -db
+#  db:
+#    image: mysql:5.7
+#    ports:
+#      -"3306:3306"
+#    volumes:
+#      -mysql-data:/var/lib/mysql
+#    environment:
+#      MYSQL_ROOT_PASSWORD: 12345678
+#      MYSQL_DATABASE: flaskmysql
+#  volumes:
+#    mysql-data:
+
+version: '3.7'
 services:
-  web:
-    build: .
-    ports:
-      - "8000:5000"
-  redis:
-    image: "redis:alpine"
+  flask:
+    image: flaskenv:latest
+    environment:
+
+  ports:
+  - published: 5000
+  - target: 5000
