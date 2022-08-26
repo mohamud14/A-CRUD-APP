@@ -47,7 +47,7 @@ services:
       - db_connection=mysql+pymysql://flask:flask@db:3306/a-crud-app
       - PYTHONUNBUFFERED=1
     ports:
-      - 5000
+      - 8000
     deploy:
       replicas: 3
     depends_on:

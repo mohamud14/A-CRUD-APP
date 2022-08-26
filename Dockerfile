@@ -21,7 +21,7 @@
 
 FROM python:3.10-alpine
 
-EXPOSE 5000
+EXPOSE 8000
 
 WORKDIR /app
 ENV db_connection="sqlite:///data.db"
