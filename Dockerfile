@@ -9,11 +9,12 @@
 # CMD ["main.py"]
 
 FROM python:3.6-alpine
-EXPOSE 5000
-WORKDIR /app
+COPY . .
+WORKDIR /A-CRUD-APP
 ENV SQLALCHEMY_DATABASE_URI="sqlite:///data.db"
-RUN python-mpip install --upgrade pip
+RUN python -m pip install --upgrade pip
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
-COPY . .
-ENTRYPOINT main.py
+EXPOSE 5000
+ENTRYPOINT ["python"]
+CMD ["main.py"]
