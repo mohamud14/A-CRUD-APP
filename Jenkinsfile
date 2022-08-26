@@ -49,9 +49,9 @@ pipeline{
             }
         }
 
-    post {
-        always {
-            junit "*.xml"
-        }
-    }
+//     post {
+//         always {
+//             junit "*.xml"
+//         }
+//     }
 }
