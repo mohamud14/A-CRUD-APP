@@ -19,11 +19,13 @@ class TestBase(LiveServerTestCase):
         return app
 
     def setUp(self):
-        from schema import Teams
+        from schema import Teams, Players
         db.create_all()  # create schema before we try to get the page
 
-        test_team = Teams(name="Test")
+        test_team = Teams(team_name="Test",team_id=None)
         db.session.add(test_team)
+        test_players = Players(player_name="Test Player",player_id=None, plays_for=None)
+        db.session.add(test_players)
         db.session.commit()
 
     def tearDown(self):
