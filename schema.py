@@ -2,11 +2,11 @@ from main import *
 
 #OOP
 class Teams(db.Model):
-    team_id = db.Column(db.Integer, unique=True, nullable=False, primary_key=True)
+    team_id = db.Column(db.Integer, unique=True, nullable=False, primary_key=True, autoincrement=True)
     team_name = db.Column(db.String(100), nullable=False, unique=True)
     # team_manager = db.Column(db.String(100), nullable=False)
     # stadium = db.Column(db.String(100), nullable=False)
-    players = db.relationship('Players', backref='teams', lazy='select')
+    players = db.relationship('Players', cascade="all,delete",backref='teams', lazy='select')
     def __init__(self, team_id, team_name):
         self.team_id = team_id
         self.team_name = team_name
@@ -25,9 +25,9 @@ class Teams(db.Model):
 #
 #
 class Players(db.Model):
-    player_id = db.Column(db.Integer, unique=True, nullable=False, primary_key=True)
+    player_id = db.Column(db.Integer, unique=True, nullable=False, primary_key=True, autoincrement=True)
     player_name = db.Column(db.String(100), nullable=False)
-    plays_for = db.Column(db.Integer,db.ForeignKey('teams.team_id'), nullable=False)
+    plays_for = db.Column(db.Integer,db.ForeignKey('teams.team_id', ondelete="CASCADE"), nullable=False)
 #     nationality = db.Column(db.String(100),nullable=False)
 #     position = db.Column(db.String(100), nullable=False)
 

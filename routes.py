@@ -1,20 +1,21 @@
 import flask
 from main import *
+from main import app
 from schema import *
 
 
 
-@app.route('/')
+@app.route('/')                  # Home page shows all teams
 def index():
     all_teams = Teams.query.all()
     return render_template('index.html',
                            all_teams=all_teams, pageTitle='Home')
 
 @app.route('/search', methods=['GET', 'POST'])
-def search():
-    if request.method == 'POST':
-        form = request.form
-        search_value = form['search_string']
+def search():                                     # POST used to send html data received from
+    if request.method == 'POST':                  # form to the server
+        form = request.form                       ## search returns all teams with characters
+        search_value = form['search_string']      ## searched by the user
         search = "%{0}%".format(search_value)
         results = Teams.query.filter(Teams.team_name.like(search)).all()
         return render_template('index.html', all_teams=results, pageTitle='Search', legend="Search Results")
