@@ -35,4 +35,4 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt --no-cache-dir
 COPY . .
 
-ENTRYPOINT python -u app.py
+ENTRYPOINT python -u main.py
